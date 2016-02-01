@@ -2,15 +2,15 @@ package Information;
 
 public class CompSciClass {
 
-    private Courses course;
+    private Course course;
     private String professor;
 
-    public CompSciClass(Courses course, String professor) {
+    public CompSciClass(Course course, String professor) {
         this.course = course;
         this.professor = professor;
     }
 
-    public Courses getCourse() {
+    public Course getCourse() {
         return course;
     }
 

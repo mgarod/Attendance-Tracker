@@ -1,6 +1,6 @@
 package Information;
 
-public enum  Courses {
+public enum Course {
     CSCI_12700("CSCI 127"),
     CSCI_13500("CSCI 135"),
     CSCI_13600("CSCI 136"),
@@ -10,7 +10,7 @@ public enum  Courses {
 
     private String name;
 
-    Courses(String name) {
+    Course(String name) {
         this.name = name;
     }
 
@@ -19,8 +19,8 @@ public enum  Courses {
         return name;
     }
 
-    public static Courses getCourse(String courseName) {
-        for (Courses course : Courses.values()) {
+    public static Course getCourse(String courseName) {
+        for (Course course : Course.values()) {
             if (courseName.equals(course.toString())) {
                 return course;
             }
