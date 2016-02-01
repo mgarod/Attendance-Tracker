@@ -10,8 +10,8 @@ public class CompSciClass {
         this.professor = professor;
     }
 
-    public String getCourse() {
-        return course.toString();
+    public Courses getCourse() {
+        return course;
     }
 
     public String getProfessor() {
