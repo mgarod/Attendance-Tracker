@@ -3,9 +3,9 @@ package Information;
 public class CompSciClass {
 
     private Course course;
-    private String professor;
+    private Professor professor;
 
-    public CompSciClass(Course course, String professor) {
+    public CompSciClass(Course course, Professor professor) {
         this.course = course;
         this.professor = professor;
     }
@@ -14,7 +14,7 @@ public class CompSciClass {
         return course;
     }
 
-    public String getProfessor() {
+    public Professor getProfessor() {
         return professor;
     }
 
