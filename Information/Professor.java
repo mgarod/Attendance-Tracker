@@ -29,6 +29,16 @@ public enum Professor {
         this.name = name;
     }
 
+    public static Professor getProfessor(String name) {
+        for (Professor professor : Professor.values()) {
+            if (name.equals(professor.name)) {
+                return professor;
+            }
+        }
+
+        throw new IllegalArgumentException(name + " is not a valid Professor's name");
+    }
+
     @Override
     public String toString() {
         return name;

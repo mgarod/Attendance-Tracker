@@ -2,6 +2,7 @@ package GUI;
 
 import Information.CompSciClass;
 import Information.Course;
+import Information.Professor;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
@@ -85,7 +86,7 @@ public class RegistrationClassEntryBox extends VBox {
             if (((CheckBox) row.getChildren().get(0)).isSelected()) {
                 String courseName = ((Label) row.getChildren().get(1)).getText();
                 String professor = ((TextField) row.getChildren().get(2)).getText();
-                enrolledcourses.add(new CompSciClass(Course.getCourse(courseName), professor));
+                enrolledcourses.add(new CompSciClass(Course.getCourse(courseName), Professor.getProfessor(professor)));
             }
         }
         return enrolledcourses;
