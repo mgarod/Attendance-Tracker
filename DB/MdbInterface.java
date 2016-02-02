@@ -1,4 +1,4 @@
-package mongodb01;
+package DB;
 
 import static com.mongodb.client.model.Filters.exists;
 
@@ -21,15 +21,15 @@ import Information.Student;
 
 public class MdbInterface {
 	/***  Data Members ***/
-	final static private MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
-	final static private MongoDatabase database = mongoClient.getDatabase("local");
-	static private MongoCollection<Document> Attendance = database.getCollection("SPRING2016");
-	private static HashMap<Integer,String> ActiveStudents = new HashMap<>();
+	final private MongoClient mongoClient = new MongoClient( "localhost" , 27017 );
+	final private MongoDatabase database = mongoClient.getDatabase("local");
+	private MongoCollection<Document> Attendance = database.getCollection("SPRING2016");
+	private HashMap<Integer,String> ActiveStudents = new HashMap<>();
 
 	
 	/*** Public Methods ***/
 	// Can be improved with pop-up error windows
-	public static boolean StudentExists(final int emplId){
+	public boolean StudentExists(final int emplId){
 		long n = Attendance.count( new Document("EMPLID", emplId) );
 		
 		if( n == 1){
@@ -48,7 +48,7 @@ public class MdbInterface {
 	}
 	
 	// Student needs Year In School member
-	public static boolean RegisterStudent(final Student S){
+	public boolean RegisterStudent(final Student S){
 		if ( StudentExists(S.getEmplId()) ){
 			String message = "This student has already been registered";
 			System.out.println(message);
@@ -68,7 +68,7 @@ public class MdbInterface {
 		return true;
 	}
 	
-	public static void SignIn(final int emplId){
+	public void SignIn(final int emplId){
 		if ( !StudentExists(emplId) ){
 			String message = "This EMPLID: [" + emplId + "] has not been registered.\n"
 					+ "The student must first be registered before signing in.";
@@ -114,12 +114,12 @@ public class MdbInterface {
 	*/
 	
 	// If a tutor forgets to sign out a student, use this to erase from the active list
-	public static void SignOutAndVoid(final int emplId){
+	public void SignOutAndVoid(final int emplId){
 		ActiveStudents.remove(emplId);
 	}
 	
 	// After sign in, use this method to display student information
-	public static Student getStudentByEmplId(final int emplId){
+	public Student getStudentByEmplId(final int emplId){
 		if ( !StudentExists(emplId) ){
 			String message = "This EMPLID: ["+emplId+"] has not been registered.\n";
 			System.out.println(message);
@@ -133,7 +133,7 @@ public class MdbInterface {
 	}
 
 	// Incomplete. Query by class is the most desired query Eric Schweitzer.
-	public static void PrintByCSCIClass(){
+	public void PrintByCSCIClass(){
 		for (Course course : Course.values()) {
 			FindIterable<Document> iterable = Attendance.find( exists("CLASSES."+course.name()) );
 			iterable.sort(new Document("CLASSES."+course.name(), 1));
@@ -156,7 +156,7 @@ public class MdbInterface {
 	}
 	
 	/*** Private Methods ***/
-	private static Document makeDocFromClasses(final ArrayList<CompSciClass> array){
+	private Document makeDocFromClasses(final ArrayList<CompSciClass> array){
 		Document d = new Document();
 		
 		for(CompSciClass class_code : array){
