@@ -16,7 +16,7 @@ import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 
 import Information.CompSciClass;
-import Information.Courses;
+import Information.Course;
 import Information.Student;
 
 public class MdbInterface {
@@ -134,7 +134,7 @@ public class MdbInterface {
 
 	// Incomplete. Query by class is the most desired query Eric Schweitzer.
 	public static void PrintByCSCIClass(){
-		for (Courses course : Courses.values()) {
+		for (Course course : Course.values()) {
 			FindIterable<Document> iterable = Attendance.find( exists("CLASSES."+course.name()) );
 			iterable.sort(new Document("CLASSES."+course.name(), 1));
 			
@@ -161,7 +161,7 @@ public class MdbInterface {
 		
 		for(CompSciClass class_code : array){
 			// Later change get Course to getCourse().name()
-			d.append(class_code.getCourse(), class_code.getProfessor());
+			d.append(class_code.getCourse().name(), class_code.getProfessor());
 		}
 		
 		return d;
