@@ -1,5 +1,6 @@
 package GUI;
 
+import DB.MdbInterface;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -12,8 +13,9 @@ public class Main extends Application {
 
     private Scene scene;
     private HBox horizontalLayout;
-    private VBox signInBox;
-    private VBox signOutBox;
+    private SignInBox signInBox;
+    private SignOutBox signOutBox;
+    private static MdbInterface mdb;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -25,6 +27,7 @@ public class Main extends Application {
         signInBox = new SignInBox();
         signInBox.setPadding(new Insets(50));
         signInBox.setStyle("-fx-border-style: hidden solid hidden hidden");
+        signInBox.getSignInButton().setOnAction(event -> handleEmpl());
 
         signOutBox = new SignOutBox();
         signOutBox.setPadding(new Insets(50));
@@ -41,6 +44,28 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        mdb = new MdbInterface();
         launch(args);
+    }
+
+    public static MdbInterface getMdb() {
+        return mdb;
+    }
+
+    private int getEmpl() {
+        return Integer.parseInt(signInBox.getTextField().getText());
+    }
+
+    private void handleEmpl() {
+        int emplId = getEmpl();
+        if (mdb.studentExists(emplId)) {
+            signOutBox.addActiveStudent(emplId);
+        } else {
+            try {
+                RegistrationWindow registration = new RegistrationWindow();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

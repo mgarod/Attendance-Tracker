@@ -8,22 +8,29 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
 
-public class RegistrationWindow extends Application {
+public class RegistrationWindow extends Stage {
 
     private Button registerButton;
     private HBox buttonHBox;
     private Scene scene;
     private VBox vBox, studentInfo, classEntry;
+    private Student student;
 
-    @Override
-    public void start(Stage primaryStage) throws Exception {
-        primaryStage.setTitle("New Student Registration");
-        primaryStage.setMinWidth(500);
-        primaryStage.setMinHeight(400);
+    RegistrationWindow() {
+        display();
+    }
+
+    public void display() {
+        initModality(Modality.APPLICATION_MODAL);
+
+        setTitle("New Student Registration");
+        setMinWidth(500);
+        setMinHeight(400);
 
         registerButton = new Button("Register");
         registerButton.setOnAction(event -> registerNewStudent());
@@ -37,27 +44,20 @@ public class RegistrationWindow extends Application {
         vBox.setAlignment(Pos.CENTER);
 
         scene = new Scene(vBox);
-        primaryStage.setScene(scene);
-        primaryStage.show();
+        setScene(scene);
+        show();
     }
 
     private void registerNewStudent() {
         try {
-            Student student = ((RegistrationStudentInfoEntryBox) studentInfo).getStudent();
+            student = ((RegistrationStudentInfoEntryBox) studentInfo).getStudent();
             ArrayList<CompSciClass> classes = ((RegistrationClassEntryBox) classEntry).getEnrolledCourses();
             student.setCurrentClasses(classes);
-            String text = student.getFirstName() + student.getLastName() + "\nYou are enrolled in:\n";
-            for (CompSciClass c : student.getCurrentClasses()) {
-                text += c + "\n";
-            }
-            PopUp.display("Confirmation", text);
+            Main.getMdb().registerStudent(student);
+
         } catch (Exception e) {
             e.printStackTrace();
             PopUp.display("Error", "Something went wrong, try again");
         }
-    }
-
-    public static void main(String[] args) {
-        launch(args);
     }
 }

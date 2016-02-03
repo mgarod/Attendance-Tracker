@@ -36,7 +36,6 @@ public class SignInBox extends VBox {
         textField.setPromptText("########");
 
         signInButton = new Button("Sign In");
-        signInButton.setOnAction(event -> handleSignIn());
 
         horizontalLayout = new HBox();
         horizontalLayout.setAlignment(Pos.BOTTOM_RIGHT);
@@ -51,7 +50,11 @@ public class SignInBox extends VBox {
         setMinSize(250, 250);
     }
 
-    private void handleSignIn() {
-        PopUp.display("Welcome back", "Welcome back");
+    public TextField getTextField() {
+        return textField;
+    }
+
+    public Button getSignInButton() {
+        return signInButton;
     }
 }

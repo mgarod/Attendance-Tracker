@@ -46,11 +46,11 @@ public class SignOutBox extends VBox {
         setMinSize(250, 250);
     }
 
-    private void addActiveStudent(Integer emplId) {
+    public void addActiveStudent(Integer emplId) {
         listView.getItems().add(emplId);
     }
 
-    private void signOutStudent(Integer emplId) {
+    public void signOutStudent(Integer emplId) {
         listView.getItems().removeAll(emplId);
     }
 }
