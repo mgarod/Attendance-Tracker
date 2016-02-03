@@ -95,4 +95,20 @@ public class RegistrationStudentInfoEntryBox extends VBox {
     public Student getStudent() {
         return new Student(getEmplId(), getFirstNameText(), getLastNameText(), getClassYear());
     }
+
+    public TextField getEmplIdTextField() {
+        return emplIdTextField;
+    }
+
+    public TextField getFirstNameTextField() {
+        return firstNameTextField;
+    }
+
+    public TextField getLastNameTextField() {
+        return lastNameTextField;
+    }
+
+    public ChoiceBox<ClassYear> getYearChoiceBox() {
+        return yearChoiceBox;
+    }
 }
