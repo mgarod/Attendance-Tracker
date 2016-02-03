@@ -4,6 +4,17 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public enum Course {
+    CSCI_12000("CSCI 120",
+            new ArrayList<Professor>(Arrays.asList(
+                    Professor.SYADU_OOSEPFRIS,
+                    Professor.JONATHAN_GALSURKAR,
+                    Professor.IRIS_HERSHENSON,
+                    Professor.PARADORN_WONGCHANAPAI,
+                    Professor.KADRI_BROGI,
+                    Professor.HENRY_WONG,
+                    Professor.EDMOND_LLESHI,
+                    Professor.WENDELL_WILLIAMS,
+                    Professor.AUBREY_ETWAROO))),
     CSCI_12700("CSCI 127",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.PAVEL_SHOSTAK,
@@ -12,6 +23,12 @@ public enum Course {
                     Professor.XIAOKE_SHEN,
                     Professor.BASAK_TAYLAN,
                     Professor.MAHDI_MAKKI))),
+    CSCI_13300("CSCI 133",
+            new ArrayList<Professor>(Arrays.asList(
+                    Professor.JONATHAN_GALSURKAR,
+                    Professor.CULLEN_SCHAFFER,
+                    Professor.ANNA_WISNIEWSKA,
+                    Professor.GENNADIY_MARYASH))),
     CSCI_13500("CSCI 135",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.WILLIAM_SAKAS,
@@ -42,11 +59,11 @@ public enum Course {
                     Professor.SIMON_AYZMAN)));
 
     private String name;
-    private ArrayList<Professor> profesors;
+    private ArrayList<Professor> professors;
 
     Course(String name, ArrayList<Professor> professors) {
         this.name = name;
-        this.profesors = professors;
+        this.professors = professors;
     }
 
     @Override
@@ -54,8 +71,8 @@ public enum Course {
         return name;
     }
 
-    public ArrayList<Professor> getProfesors() {
-        return profesors;
+    public ArrayList<Professor> getProfessors() {
+        return professors;
     }
 
     public static Course getCourse(String courseName) {
