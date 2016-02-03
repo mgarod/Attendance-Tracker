@@ -1,5 +1,7 @@
 package Information;
 
+import com.sun.istack.internal.Nullable;
+
 import java.util.ArrayList;
 
 public class SignOutData {
@@ -7,27 +9,21 @@ public class SignOutData {
     private int levelOfLearning;
     private int emplId;
 
-    public ArrayList<Topics135> getTopics() {
-        return topics;
+    public SignOutData(int emplId, @Nullable ArrayList<Topics135> topics, int levelOfLearning) {
+        this.emplId = emplId;
+        this.topics = topics;
+        this.levelOfLearning = levelOfLearning;
     }
 
-    public void setTopics(ArrayList<Topics135> topics) {
-        this.topics = topics;
+    public ArrayList<Topics135> getTopics() {
+        return topics;
     }
 
     public int getLevelOfLearning() {
         return levelOfLearning;
     }
 
-    public void setLevelOfLearning(int levelOfLearning) {
-        this.levelOfLearning = levelOfLearning;
-    }
-
     public int getEmplId() {
         return emplId;
-    }
-
-    public void setEmplId(int emplId) {
-        this.emplId = emplId;
     }
 }
