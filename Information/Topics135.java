@@ -12,7 +12,7 @@ public enum Topics135 {
     PARAMETERS_REFERENCE_AND_VALUE("Call by Reference & Value"),
     OPERATOR_OVERLOADING("Operator Overloading"),
     POINTERS_AND_DYNAMIC_ARRAYS("Pointers / Dynamic Arrays"),
-    SEPERATE_COMPILATION_LINUX("Seperate Compilation / Linux"),
+    SEPARATE_COMPILATION_LINUX("Separate Compilation / Linux"),
     LINKED_DATA_STRUCTURES("Linked Data Structures"),
     OTHER("Other");
 
