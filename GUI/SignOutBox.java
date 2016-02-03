@@ -1,5 +1,6 @@
 package GUI;
 
+import Information.Student;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -13,7 +14,7 @@ import javafx.scene.text.Font;
 public class SignOutBox extends VBox {
 
     private Label signOutBoxLabel;
-    private ListView<String> listView;
+    private ListView<Student> listView;
     private Button signOutButton;
     private HBox horizontalLayout;
 
@@ -46,11 +47,24 @@ public class SignOutBox extends VBox {
         setMinSize(250, 250);
     }
 
-    public void addActiveStudent(String fullName) {
-        listView.getItems().add(fullName);
+    public Button getSignOutButton() {
+        return signOutButton;
     }
 
-    public void signOutStudent(String fullName) {
-        listView.getItems().remove(fullName);
+    public Student getSelectedStudent() {
+        Student student = listView.getSelectionModel().getSelectedItem();
+        if (student == null) {
+            PopUp.display("Error", "No student was selected");
+            throw new NullPointerException("No Student was selected");
+        }
+        return student;
+    }
+
+    public void addActiveStudent(Student student) {
+        listView.getItems().add(student);
+    }
+
+    public void signOutStudent(Student student) {
+        listView.getItems().remove(student);
     }
 }
