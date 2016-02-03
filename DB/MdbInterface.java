@@ -58,7 +58,7 @@ public class MdbInterface {
 		Document student = new Document("EMPLID", S.getEmplId())
 				.append("FIRSTNAME", S.getFirstName())
 				.append("LASTNAME", S.getLastName())
-				.append("YEARINSCHOOL", "YEARINSCHOOL")
+				.append("YEARINSCHOOL", S.getYear().name())
 				.append("CLASSES", class_doc)
 				.append("LOG", new Document() );
 		
@@ -115,9 +115,10 @@ public class MdbInterface {
 		}
 		
 		Document S = Attendance.find(new Document("EMPLID", emplId)).first();
-		
+		String classyear = S.get("YEARINSCHOOL", String.class);
+
 		return new Student(emplId, S.get("FIRSTNAME", String.class), S.get("LASTNAME", String.class),
-                S.get("YEARINSCHOOL", ClassYear.class));
+                );
 	}
 
 	// Incomplete. Query by class is the most desired query Eric Schweitzer.
