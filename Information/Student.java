@@ -52,4 +52,9 @@ public class Student {
     public ClassYear getYear() {
         return year;
     }
+
+    @Override
+    public String toString() {
+        return getFirstName() + " " + getLastName();
+    }
 }
