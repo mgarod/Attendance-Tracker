@@ -30,7 +30,7 @@ public class MdbInterface {
     private MongoCollection<Document> Attendance;
     private HashMap<Integer, String> ActiveStudents;
 
-    MdbInterface() {
+    public MdbInterface() {
         mongoClient = new MongoClient("localhost", 27017);
         database = mongoClient.getDatabase("local");
         Attendance = database.getCollection("SPRING2016");
