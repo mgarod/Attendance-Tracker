@@ -5,7 +5,7 @@ public enum Professor {
     JULIO_KUPLINSKY("Julio Kuplinsky"),
     MUSAB_YASIN("Musab Yasin"),
     XIAOKE_SHEN("Xiaoke Shen"),
-    BASAK_TAYLAN("Basak_Taylan"),
+    BASAK_TAYLAN("Basak Taylan"),
     MAHDI_MAKKI("Mahdi Makki"),
     BENJAMIN_GARRETT("Benjamin Garrett"),
     ANNA_WISNIEWSKA("Anna Wisniewska"),
@@ -21,7 +21,15 @@ public enum Professor {
     SEVERIN_NGOSSE("Severin Ngosse"),
     EDMOND_LLESHI("Edmond Lleshi"),
     CHRISTINA_ZAMFIRESCU("Christina Zamfirescu"),
-    SIMON_AYZMAN("Simon Ayzman");
+    SIMON_AYZMAN("Simon Ayzman"),
+    JONATHAN_GALSURKAR("Jonathan Galsurkar"),
+    PARADORN_WONGCHANAPAI("Paradorn Wongchanapai"),
+    HENRY_WONG("Henry Wong"),
+    WENDELL_WILLIAMS("Wendell Williams"),
+    KADRI_BROGI("Kadri Brogi"),
+    AUBREY_ETWAROO("Aubrey Etwaroo"),
+    IRIS_HERSHENSON("Iris Hershenson"),
+    SYADU_OOSEPFRIS("Syadu Oosepfris");
 
     private String name;
 

@@ -6,6 +6,7 @@ import Information.Professor;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -25,7 +26,7 @@ public class RegistrationClassEntryBox extends VBox {
     private HBox hBox;
     private CheckBox checkBox;
     private Label courseNameLabel;
-    private TextField professorNameTextField;
+    private ComboBox<Professor> professorNameComboBox;
 
     public RegistrationClassEntryBox() {
         this(0);
@@ -62,10 +63,11 @@ public class RegistrationClassEntryBox extends VBox {
             courseNameLabel = new Label(course.toString());
             courseNameLabel.setMinWidth(100);
 
-            professorNameTextField = new TextField();
-            professorNameTextField.setMinWidth(300);
+            professorNameComboBox = new ComboBox<>();
+            populateProfessorNameComboBox(professorNameComboBox, course);
+            professorNameComboBox.setMinWidth(300);
 
-            hBox = new HBox(checkBox, courseNameLabel, professorNameTextField);
+            hBox = new HBox(checkBox, courseNameLabel, professorNameComboBox);
             possibleCourses.add(hBox);
         }
     }
@@ -90,5 +92,11 @@ public class RegistrationClassEntryBox extends VBox {
             }
         }
         return enrolledcourses;
+    }
+
+    private void populateProfessorNameComboBox(ComboBox<Professor> comboBox, Course course){
+        for (Professor professor : course.getProfessors()){
+            comboBox.getItems().add(professor);
+        }
     }
 }
