@@ -1,6 +1,7 @@
 package GUI;
 
 import DB.MdbInterface;
+import Information.Student;
 import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -16,6 +17,7 @@ public class Main extends Application {
     private SignInBox signInBox;
     private SignOutBox signOutBox;
     private static MdbInterface mdb;
+    Student student;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -59,10 +61,13 @@ public class Main extends Application {
     private void handleEmpl() {
         int emplId = getEmpl();
         if (mdb.studentExists(emplId)) {
-            signOutBox.addActiveStudent(emplId);
+            student = mdb.getStudentByEmplId(emplId);
+            signOutBox.addActiveStudent(student.getFirstName() + " " + student.getLastName());
         } else {
             try {
-                RegistrationWindow registration = new RegistrationWindow();
+                new RegistrationWindow();
+                student = mdb.getStudentByEmplId(emplId);
+                signOutBox.addActiveStudent(student.getFirstName() + " " + student.getLastName());
             } catch (Exception e) {
                 e.printStackTrace();
             }

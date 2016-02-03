@@ -13,7 +13,7 @@ import javafx.scene.text.Font;
 public class SignOutBox extends VBox {
 
     private Label signOutBoxLabel;
-    private ListView<Integer> listView;
+    private ListView<String> listView;
     private Button signOutButton;
     private HBox horizontalLayout;
 
@@ -30,7 +30,7 @@ public class SignOutBox extends VBox {
     private void initializeFields() {
         signOutBoxLabel = new Label("Sign Out");
         signOutBoxLabel.setFont(new Font(20));
-        listView = new ListView<Integer>();
+        listView = new ListView<>();
         listView.setMaxSize(200, 150);
         signOutButton = new Button("Sign Out");
         horizontalLayout = new HBox();
@@ -46,11 +46,11 @@ public class SignOutBox extends VBox {
         setMinSize(250, 250);
     }
 
-    public void addActiveStudent(Integer emplId) {
-        listView.getItems().add(emplId);
+    public void addActiveStudent(String fullName) {
+        listView.getItems().add(fullName);
     }
 
-    public void signOutStudent(Integer emplId) {
-        listView.getItems().removeAll(emplId);
+    public void signOutStudent(String fullName) {
+        listView.getItems().remove(fullName);
     }
 }
