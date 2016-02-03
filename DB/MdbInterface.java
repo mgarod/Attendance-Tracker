@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 
-import Information.SignOutData;
+import Information.*;
 import com.mongodb.BasicDBList;
 import org.bson.Document;
 
@@ -18,10 +18,6 @@ import com.mongodb.MongoClient;
 import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
-
-import Information.CompSciClass;
-import Information.Course;
-import Information.Student;
 
 public class MdbInterface {
 	/***  Data Members ***/
@@ -120,7 +116,8 @@ public class MdbInterface {
 		
 		Document S = Attendance.find(new Document("EMPLID", emplId)).first();
 		
-		return new Student(emplId, S.get("FIRSTNAME", String.class), S.get("LASTNAME", String.class));
+		return new Student(emplId, S.get("FIRSTNAME", String.class), S.get("LASTNAME", String.class),
+                S.get("YEARINSCHOOL", ClassYear.class));
 	}
 
 	// Incomplete. Query by class is the most desired query Eric Schweitzer.

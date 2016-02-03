@@ -5,14 +5,16 @@ import java.util.ArrayList;
 public class Student {
 
     private ArrayList<CompSciClass> currentCourses;
+    private ClassYear year;
     private String firstName;
     private String lastName;
     private int emplId;
 
-    public Student(int emplId, String firstName, String lastName) {
+    public Student(int emplId, String firstName, String lastName, ClassYear year) {
         this.emplId = emplId;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.year = year;
     }
 
     public ArrayList<CompSciClass> getCurrentClasses() {
@@ -45,5 +47,9 @@ public class Student {
 
     public void setEmplId(int emplId) {
         this.emplId = emplId;
+    }
+
+    public ClassYear getYear() {
+        return year;
     }
 }

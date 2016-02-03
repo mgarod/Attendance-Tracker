@@ -1,8 +1,10 @@
 package GUI;
 
+import Information.ClassYear;
 import Information.Student;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -10,11 +12,12 @@ import javafx.scene.layout.VBox;
 
 public class RegistrationStudentInfoEntryBox extends VBox {
 
-    private Label emplIdLabel, firstNameLabel, lastNameLabel;
+    private Label emplIdLabel, firstNameLabel, lastNameLabel, classyearLabel;
     private TextField emplIdTextField;
     private TextField firstNameTextField;
     private TextField lastNameTextField;
-    private HBox horizontalEmplId, horizontalFirstName, horizontalLastName;
+    private ChoiceBox<ClassYear> yearChoiceBox;
+    private HBox horizontalEmplId, horizontalFirstName, horizontalLastName, horizontalChoiceBox;
 
     public RegistrationStudentInfoEntryBox() {
         this(0);
@@ -36,9 +39,14 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         lastNameLabel = new Label("Last Name");
         lastNameLabel.setMinWidth(80);
 
+        classyearLabel = new Label("Class Year");
+        classyearLabel.setMinWidth(80);
+
         emplIdTextField = new TextField();
         firstNameTextField = new TextField();
         lastNameTextField = new TextField();
+        yearChoiceBox = new ChoiceBox<>();
+        yearChoiceBox.getItems().addAll(ClassYear.values());
 
         horizontalEmplId = new HBox();
         horizontalEmplId.setAlignment(Pos.CENTER);
@@ -49,14 +57,18 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         horizontalLastName = new HBox();
         horizontalLastName.setAlignment(Pos.CENTER);
 
+        horizontalChoiceBox = new HBox();
+        horizontalChoiceBox.setAlignment(Pos.CENTER);
     }
 
     private void iniatlizeLayout() {
         horizontalEmplId.getChildren().addAll(emplIdLabel, emplIdTextField);
         horizontalFirstName.getChildren().addAll(firstNameLabel, firstNameTextField);
         horizontalLastName.getChildren().addAll(lastNameLabel, lastNameTextField);
+        horizontalChoiceBox.getChildren().addAll(classyearLabel, yearChoiceBox);
 
-        getChildren().addAll(horizontalEmplId, horizontalFirstName, horizontalLastName);
+        getChildren().addAll(horizontalEmplId, horizontalFirstName, horizontalLastName, horizontalChoiceBox);
+
         setPadding(new Insets(20));
         setAlignment(Pos.CENTER);
     }
@@ -77,8 +89,12 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         return lastNameTextField.getText();
     }
 
+    public ClassYear getClassYear() {
+        return yearChoiceBox.getValue();
+    }
+
     public Student getStudent() {
-        return new Student(getEmplIdTextField(), getFirstNameTextField(), getLastNameTextField());
+        return new Student(getEmplIdTextField(), getFirstNameTextField(), getLastNameTextField(), getClassYear());
     }
 
 }
