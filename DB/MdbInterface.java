@@ -115,10 +115,9 @@ public class MdbInterface {
 		}
 		
 		Document S = Attendance.find(new Document("EMPLID", emplId)).first();
-		String classyear = S.get("YEARINSCHOOL", String.class);
 
 		return new Student(emplId, S.get("FIRSTNAME", String.class), S.get("LASTNAME", String.class),
-                );
+               ClassYear.getClassYear(S.get("YEARINSCHOOL", String.class)) );
 	}
 
 	// Incomplete. Query by class is the most desired query Eric Schweitzer.
