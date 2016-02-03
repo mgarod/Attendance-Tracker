@@ -30,17 +30,10 @@ public class RegistrationStudentInfoEntryBox extends VBox {
     }
 
     private void initializeFields() {
-        emplIdLabel = new Label("EMPL ID");
-        emplIdLabel.setMinWidth(80);
-
-        firstNameLabel = new Label("First Name");
-        firstNameLabel.setMinWidth(80);
-
-        lastNameLabel = new Label("Last Name");
-        lastNameLabel.setMinWidth(80);
-
-        classyearLabel = new Label("Class Year");
-        classyearLabel.setMinWidth(80);
+        emplIdLabel = makeNewLabel("EMPL ID");
+        firstNameLabel = makeNewLabel("First Name");
+        lastNameLabel = makeNewLabel("Last Name");
+        classyearLabel = makeNewLabel("Class Year");
 
         emplIdTextField = new TextField();
         firstNameTextField = new TextField();
@@ -49,17 +42,22 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         yearChoiceBox.getItems().addAll(ClassYear.values());
         yearChoiceBox.setValue(ClassYear.FRESHMAN);
 
-        horizontalEmplId = new HBox();
-        horizontalEmplId.setAlignment(Pos.CENTER);
+        horizontalEmplId = makeNewHorizontalLayout();
+        horizontalFirstName = makeNewHorizontalLayout();
+        horizontalLastName = makeNewHorizontalLayout();
+        horizontalChoiceBox = makeNewHorizontalLayout();
+    }
 
-        horizontalFirstName = new HBox();
-        horizontalFirstName.setAlignment(Pos.CENTER);
+    private Label makeNewLabel(String text) {
+        Label label = new Label(text);
+        label.setMinWidth(80);
+        return label;
+    }
 
-        horizontalLastName = new HBox();
-        horizontalLastName.setAlignment(Pos.CENTER);
-
-        horizontalChoiceBox = new HBox();
-        horizontalChoiceBox.setAlignment(Pos.CENTER);
+    private HBox makeNewHorizontalLayout() {
+        HBox hBox = new HBox();
+        hBox.setAlignment(Pos.CENTER);
+        return hBox;
     }
 
     private void iniatlizeLayout() {
