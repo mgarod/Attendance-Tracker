@@ -47,6 +47,7 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         lastNameTextField = new TextField();
         yearChoiceBox = new ChoiceBox<>();
         yearChoiceBox.getItems().addAll(ClassYear.values());
+        yearChoiceBox.setValue(ClassYear.FRESHMAN);
 
         horizontalEmplId = new HBox();
         horizontalEmplId.setAlignment(Pos.CENTER);
