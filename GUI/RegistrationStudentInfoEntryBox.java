@@ -72,7 +72,7 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         setAlignment(Pos.CENTER);
     }
 
-    public Integer getEmplIdTextField() {
+    public Integer getEmplId() {
         Integer emplId = null;
 
         emplId = Integer.parseInt(emplIdTextField.getText());
@@ -80,11 +80,11 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         return emplId;
     }
 
-    public String getFirstNameTextField() {
+    public String getFirstNameText() {
         return firstNameTextField.getText();
     }
 
-    public String getLastNameTextField() {
+    public String getLastNameText() {
         return lastNameTextField.getText();
     }
 
@@ -93,7 +93,6 @@ public class RegistrationStudentInfoEntryBox extends VBox {
     }
 
     public Student getStudent() {
-        return new Student(getEmplIdTextField(), getFirstNameTextField(), getLastNameTextField(), getClassYear());
+        return new Student(getEmplId(), getFirstNameText(), getLastNameText(), getClassYear());
     }
-
 }
