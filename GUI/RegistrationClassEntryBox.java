@@ -34,7 +34,7 @@ public class RegistrationClassEntryBox extends VBox {
     public RegistrationClassEntryBox(double spacing) {
         super(spacing);
         initializeFields();
-        iniatlizeLayout();
+        initializeLayout();
     }
 
     private void initializeFields() {
@@ -70,7 +70,7 @@ public class RegistrationClassEntryBox extends VBox {
         }
     }
 
-    private void iniatlizeLayout() {
+    private void initializeLayout() {
         for (HBox row : possibleCourses) {
             row.setAlignment(Pos.CENTER);
             this.setMargin(row, new Insets(5, 0, 0, 0));
