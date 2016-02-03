@@ -8,11 +8,13 @@ public class SignOutData {
     private ArrayList<Topics135> topics;
     private int levelOfLearning;
     private int emplId;
+    private Tutor tutor;
 
-    public SignOutData(int emplId, @Nullable ArrayList<Topics135> topics, int levelOfLearning) {
+    public SignOutData(int emplId, @Nullable ArrayList<Topics135> topics, int levelOfLearning, Tutor tutor) {
         this.emplId = emplId;
         this.topics = topics;
         this.levelOfLearning = levelOfLearning;
+        this.tutor = tutor;
     }
 
     public ArrayList<Topics135> getTopics() {
@@ -26,4 +28,6 @@ public class SignOutData {
     public int getEmplId() {
         return emplId;
     }
+
+    public Tutor getTutor() { return tutor; }
 }

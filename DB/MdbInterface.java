@@ -2,8 +2,6 @@ package DB;
 
 import static com.mongodb.client.model.Filters.exists;
 
-import java.io.FileOutputStream;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +13,6 @@ import org.bson.Document;
 
 import com.mongodb.Block;
 import com.mongodb.MongoClient;
-import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoDatabase;
 import com.mongodb.client.MongoCollection;
 
@@ -34,7 +31,6 @@ public class MdbInterface {
     }
 
 	/*** Public Methods ***/
-	// Can be improved with pop-up error windows
 	public boolean studentExists(final int emplId){
 		long n = Attendance.count( new Document("EMPLID", emplId) );
 		
@@ -46,8 +42,7 @@ public class MdbInterface {
 			return false;
 		}	
 	}
-	
-	// Student needs Year In School member
+
 	public boolean registerStudent(final Student S){
 		if ( studentExists(S.getEmplId()) ){
             throw new IllegalArgumentException(S.getEmplId() + " has already been registered");
@@ -87,16 +82,12 @@ public class MdbInterface {
 		String time_in = ActiveStudents.get(sod.getEmplId());
 		ActiveStudents.remove(sod.getEmplId());
 		String time_out = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date());
-		
-		//final String TOPICSDISCUSSED = "Recursion";
-		//final String LEVELOFLEARNING = "4";
-		//final String TUTOR = "Garod";
-		
+
 		Document time_doc = new Document()
 							.append("TIMEOUT", time_out)
 							.append("TOPICSDISCUSSED", new BasicDBList().addAll(sod.getTopics()))
 							.append("LEVELOFLEARNING", sod.getLevelOfLearning())
-							.append("TUTOR", "tutor_goes_here"); //TODO
+							.append("TUTOR", sod.getTutor().toString());
 		
 		Document queryEMPLID = new Document("EMPLID", sod.getEmplId());
 		Document update = new Document("$set", new Document( "LOG."+time_in , time_doc) );
@@ -116,8 +107,11 @@ public class MdbInterface {
 		
 		Document S = Attendance.find(new Document("EMPLID", emplId)).first();
 
-		return new Student(emplId, S.get("FIRSTNAME", String.class), S.get("LASTNAME", String.class),
-               ClassYear.getClassYear(S.get("YEARINSCHOOL", String.class)) );
+		String fn = S.get("FIRSTNAME", String.class);
+		String ln = S.get("LASTNAME", String.class);
+		ClassYear year = ClassYear.getClassYear(S.get("YEARINSCHOOL", String.class));
+
+		return new Student(emplId, fn, ln, year);
 	}
 
 	/*** Private Methods ***/
