@@ -33,6 +33,7 @@ public class Main extends Application {
 
         signOutBox = new SignOutBox();
         signOutBox.setPadding(new Insets(50));
+        signOutBox.getSignOutButton().setOnAction(event -> handleSignOut(signOutBox.getSelectedStudent()));
 
         horizontalLayout = new HBox();
         horizontalLayout.setAlignment(Pos.CENTER);
@@ -62,15 +63,22 @@ public class Main extends Application {
         int emplId = getEmpl();
         if (mdb.studentExists(emplId)) {
             student = mdb.getStudentByEmplId(emplId);
-            signOutBox.addActiveStudent(student.getFirstName() + " " + student.getLastName());
+            signOutBox.addActiveStudent(mdb.getStudentByEmplId(emplId));
+            mdb.signIn(emplId);
         } else {
             try {
                 new RegistrationWindow();
                 student = mdb.getStudentByEmplId(emplId);
-                signOutBox.addActiveStudent(student.getFirstName() + " " + student.getLastName());
+                signOutBox.addActiveStudent(mdb.getStudentByEmplId(emplId));
+                mdb.signIn(emplId);
             } catch (Exception e) {
                 e.printStackTrace();
             }
         }
+    }
+
+    private void handleSignOut(Student student) {
+        new SignOutReviewWindow(student);
+        signOutBox.signOutStudent(student);
     }
 }
