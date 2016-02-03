@@ -45,7 +45,7 @@ public class RegistrationWindow extends Stage {
 
         scene = new Scene(vBox);
         setScene(scene);
-        show();
+        showAndWait();
     }
 
     private void registerNewStudent() {
@@ -54,7 +54,7 @@ public class RegistrationWindow extends Stage {
             ArrayList<CompSciClass> classes = ((RegistrationClassEntryBox) classEntry).getEnrolledCourses();
             student.setCurrentClasses(classes);
             Main.getMdb().registerStudent(student);
-
+            close();
         } catch (Exception e) {
             e.printStackTrace();
             PopUp.display("Error", "Something went wrong, try again");
