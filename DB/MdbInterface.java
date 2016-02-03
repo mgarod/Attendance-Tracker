@@ -189,7 +189,7 @@ public class MdbInterface {
 		Document d = new Document();
 		
 		for(CompSciClass class_code : array){
-			d.append(class_code.getCourse().name(), class_code.getProfessor());
+			d.append(class_code.getCourse().name(), class_code.getProfessor().name());
 		}
 		
 		return d;
