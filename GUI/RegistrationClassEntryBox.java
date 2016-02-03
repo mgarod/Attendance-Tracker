@@ -5,10 +5,7 @@ import Information.Course;
 import Information.Professor;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
@@ -87,8 +84,8 @@ public class RegistrationClassEntryBox extends VBox {
         for (HBox row : possibleCourses) {
             if (((CheckBox) row.getChildren().get(0)).isSelected()) {
                 String courseName = ((Label) row.getChildren().get(1)).getText();
-                String professor = ((TextField) row.getChildren().get(2)).getText();
-                enrolledcourses.add(new CompSciClass(Course.getCourse(courseName), Professor.getProfessor(professor)));
+                Professor professor = ((ComboBox<Professor>) row.getChildren().get(2)).getValue();
+                enrolledcourses.add(new CompSciClass(Course.getCourse(courseName), professor));
             }
         }
         return enrolledcourses;
