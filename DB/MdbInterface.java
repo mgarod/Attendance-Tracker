@@ -6,6 +6,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.stream.Collectors;
 
 import Information.*;
 import com.mongodb.BasicDBList;
@@ -84,7 +85,7 @@ public class MdbInterface {
 
 		BasicDBList topicList = new BasicDBList();
 		if (sod.getTopics() != null){
-			topicList.addAll(sod.getTopics());
+			topicList.addAll(sod.getTopics().stream().map(Topics135::toString).collect(Collectors.toList()));
 		}
 
 		Document time_doc = new Document()
