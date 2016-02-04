@@ -85,7 +85,8 @@ public class MdbInterface {
 
 		BasicDBList topicList = new BasicDBList();
 		if (sod.getTopics() != null){
-			topicList.addAll(sod.getTopics().stream().map(Topics135::toString).collect(Collectors.toList()));
+			for (Topics135 topic : sod.getTopics())
+				topicList.add(topic.toString());
 		}
 
 		Document time_doc = new Document()
