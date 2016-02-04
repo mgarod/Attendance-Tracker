@@ -82,9 +82,14 @@ public class MdbInterface {
 		ActiveStudents.remove(sod.getEmplId());
 		String time_out = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date());
 
+		BasicDBList topicList = new BasicDBList();
+		if (sod.getTopics() != null){
+			topicList.addAll(sod.getTopics());
+		}
+
 		Document time_doc = new Document()
 							.append("TIMEOUT", time_out)
-							.append("TOPICSDISCUSSED", new BasicDBList().addAll(sod.getTopics()))
+							.append("TOPICSDISCUSSED", topicList)
 							.append("LEVELOFLEARNING", sod.getLevelOfLearning())
 							.append("TUTOR", sod.getTutor().toString());
 		
