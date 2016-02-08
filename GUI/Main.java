@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
@@ -60,7 +61,15 @@ public class Main extends Application {
     }
 
     private void handleEmpl() {
-        int emplId = getEmpl();
+        int emplId;
+        try{
+            emplId = getEmpl();
+        } catch (NumberFormatException e){
+            signInBox.getTextField().clear();
+            PopUp.display("Error", "EMPLID must contain only numbers");
+            throw new NumberFormatException("EMPLID must contain only numbers");
+        }
+
         if (mdb.studentExists(emplId)) {
             student = mdb.getStudentByEmplId(emplId);
             signOutBox.addActiveStudent(mdb.getStudentByEmplId(emplId));
