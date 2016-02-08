@@ -56,18 +56,35 @@ public class Main extends Application {
         return mdb;
     }
 
+    // Throws NumberFormatException if Integer cannot parse EMPL ID
     private int getEmpl() {
         return Integer.parseInt(signInBox.getTextField().getText());
     }
 
+    // Precondition: emplId is a valid integer which has already been parsed
+    // Throws IllegalArgumentException if emplId is not 8 digits
+    private boolean validateEmpl(int emplId){
+        if(emplId < 9999999 || emplId > 99999999){
+            throw new IllegalArgumentException("EMPL ID must be exactly 8 digits long");
+        }
+        return true;
+    }
+
     private void handleEmpl() {
         int emplId;
-        try{
+        try {
             emplId = getEmpl();
-        } catch (NumberFormatException e){
+            validateEmpl(emplId);
+        } catch (NumberFormatException e) {
             signInBox.getTextField().clear();
-            PopUp.display("Error", "EMPLID must contain only numbers");
-            throw new NumberFormatException("EMPLID must contain only numbers");
+            PopUp.display("Error", "EMPL ID field must contain only numbers\n" +
+                    "and EMPL ID must be exactly 8 digits long");
+            throw new NumberFormatException("EMPL ID must contain only numbers");
+        } catch (IllegalArgumentException e) {
+            signInBox.getTextField().clear();
+            PopUp.display("Error", "EMPL ID field must contain only numbers\n" +
+                    "and EMPL ID must be exactly 8 digits long");
+            throw new IllegalArgumentException("EMPL ID must be exactly 8 digits long");
         }
 
         if (mdb.studentExists(emplId)) {
@@ -84,6 +101,8 @@ public class Main extends Application {
                 e.printStackTrace();
             }
         }
+
+        signInBox.getTextField().clear();
     }
 
     private void handleSignOut(Student student) {
