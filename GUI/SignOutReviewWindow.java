@@ -24,6 +24,8 @@ public class SignOutReviewWindow extends Stage {
     private RegistrationStudentInfoEntryBox studentInfo;
     private ChoiceBox<Tutor> theTutor;
     private ChoiceBox<Integer> levelOfLearning;
+    private Label theTutorLabel, levelOfLearningLabel;
+    private HBox theTutorLayout, levelOfLearningLayout;
     private VBox vertical135Layout;
     private CheckBox is135;
     private ListView<Topics135> topicsListView;
@@ -58,25 +60,34 @@ public class SignOutReviewWindow extends Stage {
 
         theTutor = new ChoiceBox<>();
         theTutor.getItems().addAll(Tutor.values());
+        theTutorLabel = new Label("Tutor ");
+        theTutorLayout = new HBox();
+        theTutorLayout.getChildren().addAll(theTutorLabel, theTutor);
 
-        levelOfLearning = new ChoiceBox<>();
-        levelOfLearning.getItems().addAll(1, 2, 3, 4);
-
-        is135 = new CheckBox("Discussed 135 Topics?");
+        is135 = new CheckBox("Discussed 135 Topics? ");
         is135.setOnAction(event -> handleListView());
 
+        // Hidden until is135 is checked
+        levelOfLearning = new ChoiceBox<>();
+        levelOfLearning.getItems().addAll(1, 2, 3, 4);
+        levelOfLearningLabel = new Label("Level Of Learning ");
+        levelOfLearningLayout = new HBox();
+        levelOfLearningLayout.getChildren().addAll(levelOfLearningLabel, levelOfLearning);
+        levelOfLearningLayout.setVisible(false);
+        levelOfLearningLayout.setManaged(false);
+
+        // Hidden until is135 is checked
         topicsListView = new ListView<>();
         topicsListView.getItems().addAll(Topics135.values());
         topicsListView.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
-        // Remove from layout initially
         topicsListView.setVisible(false);
         topicsListView.setManaged(false);
 
         vertical135Layout = new VBox(10);
-        vertical135Layout.getChildren().addAll(is135, topicsListView);
+        vertical135Layout.getChildren().addAll(is135, levelOfLearningLayout, topicsListView);
 
         mainVBox = new VBox(20);
-        mainVBox.getChildren().addAll(studentInfo, theTutor, levelOfLearning, vertical135Layout, buttonHBox);
+        mainVBox.getChildren().addAll(studentInfo, theTutorLayout, vertical135Layout, buttonHBox);
         mainVBox.setMargin(vertical135Layout, new Insets(0, 20, 0, 20));
         mainVBox.setMargin(buttonHBox, new Insets(20));
         mainVBox.setAlignment(Pos.TOP_CENTER);
@@ -95,11 +106,15 @@ public class SignOutReviewWindow extends Stage {
         if (is135.isSelected()) {
             topicsListView.setVisible(true);
             topicsListView.setManaged(true);
-            setHeight(500);
+            levelOfLearningLayout.setVisible(true);
+            levelOfLearningLayout.setManaged(true);
+            setHeight(600);
         } else {
             topicsListView.setVisible(false);
             topicsListView.setManaged(false);
-            setHeight(300);
+            levelOfLearningLayout.setVisible(false);
+            levelOfLearningLayout.setManaged(false);
+            setHeight(400);
         }
     }
 
@@ -118,7 +133,13 @@ public class SignOutReviewWindow extends Stage {
             arrayOfTopics = null;
         }
 
-        sod = new SignOutData(student.getEmplId(), arrayOfTopics, levelOfLearning.getValue(), theTutor.getValue());
+        // If not in 135, then Level of Learning will be null. Do not insert level of learning in to DB.
+        int levelOfLearningValue = -1;
+        if (levelOfLearning.getValue() != null){
+            levelOfLearningValue = levelOfLearning.getValue();
+        }
+
+        sod = new SignOutData(student.getEmplId(), arrayOfTopics, levelOfLearningValue, theTutor.getValue());
 
         Main.getMdb().signOut(sod);
         close();
@@ -128,9 +149,18 @@ public class SignOutReviewWindow extends Stage {
         if (theTutor.getValue() == null) {
             PopUp.display("Error", "Please select a tutor");
             throw new IllegalArgumentException("Tutor was not selected");
-        } else if (levelOfLearning.getValue() == null) {
-            PopUp.display("Error", "Please select a level of learning for the student");
-            throw new IllegalArgumentException("Level of Learning was not selected");
+        }
+        else if (is135.isSelected()) {
+            if (levelOfLearning.getValue() == null) {
+                PopUp.display("Error", "Please select a level of learning for the student");
+                throw new IllegalArgumentException("Level of Learning was not selected");
+            }
+
+            if (topicsListView.getSelectionModel().getSelectedItems().size() == 0) {
+                PopUp.display("Error", "Select at least one topic of discussion\n\n" +
+                        "If you are unsure, please select \'Other\'");
+                throw new IllegalArgumentException("No class topic was selected");
+            }
         }
     }
 }

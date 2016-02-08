@@ -83,18 +83,23 @@ public class MdbInterface {
 		ActiveStudents.remove(sod.getEmplId());
 		String time_out = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(new Date());
 
-		BasicDBList topicList = new BasicDBList();
+		Document time_doc = new Document()
+				.append("TIMEOUT", time_out)
+				.append("TUTOR", sod.getTutor().toString());
+
+		// If not in 135, then Topics discussed will be be null. Do not insert empty list into DB.
 		if (sod.getTopics() != null){
+			BasicDBList topicList = new BasicDBList();
 			for (Topics135 topic : sod.getTopics())
 				topicList.add(topic.toString());
+			time_doc.append("TOPICSDISCUSSED", topicList);
 		}
 
-		Document time_doc = new Document()
-							.append("TIMEOUT", time_out)
-							.append("TOPICSDISCUSSED", topicList)
-							.append("LEVELOFLEARNING", sod.getLevelOfLearning())
-							.append("TUTOR", sod.getTutor().toString());
-		
+		// If not in 135, then Level of Learning will be null. Do not insert -1 value in to DB.
+		if (sod.getLevelOfLearning() != -1) {
+			time_doc.append("LEVELOFLEARNING", sod.getLevelOfLearning());
+		}
+
 		Document queryEMPLID = new Document("EMPLID", sod.getEmplId());
 		Document update = new Document("$set", new Document( "LOG."+time_in , time_doc) );
 		Attendance.updateOne(queryEMPLID, update);
