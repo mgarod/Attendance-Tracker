@@ -29,7 +29,9 @@ public enum Professor {
     KADRI_BROGI("Kadri Brogi"),
     AUBREY_ETWAROO("Aubrey Etwaroo"),
     IRIS_HERSHENSON("Iris Hershenson"),
-    SYADU_OOSEPFRIS("Syadu Oosepfris");
+    SYADU_OOSEPFRIS("Syadu Oosepfris"),
+    ALI_ELSAYED("Ali Elsayed"),
+    STAFF("STAFF");
 
     private String name;
 

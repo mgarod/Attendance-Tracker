@@ -14,7 +14,8 @@ public enum Course {
                     Professor.HENRY_WONG,
                     Professor.EDMOND_LLESHI,
                     Professor.WENDELL_WILLIAMS,
-                    Professor.AUBREY_ETWAROO))),
+                    Professor.AUBREY_ETWAROO,
+                    Professor.STAFF))),
     CSCI_12700("CSCI 127",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.PAVEL_SHOSTAK,
@@ -22,41 +23,49 @@ public enum Course {
                     Professor.MUSAB_YASIN,
                     Professor.XIAOKE_SHEN,
                     Professor.BASAK_TAYLAN,
-                    Professor.MAHDI_MAKKI))),
+                    Professor.MAHDI_MAKKI,
+                    Professor.STAFF))),
     CSCI_13300("CSCI 133",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.JONATHAN_GALSURKAR,
                     Professor.CULLEN_SCHAFFER,
                     Professor.ANNA_WISNIEWSKA,
-                    Professor.GENNADIY_MARYASH))),
+                    Professor.GENNADIY_MARYASH,
+                    Professor.STAFF))),
     CSCI_13500("CSCI 135",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.WILLIAM_SAKAS,
-                    Professor.SUBASH_SHANKAR))),
+                    Professor.SUBASH_SHANKAR,
+                    Professor.STAFF))),
     CSCI_13600("CSCI 136",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.BENJAMIN_GARRETT,
                     Professor.JUSTIN_TOJEIRA,
                     Professor.ILYA_KORSUNSKIY,
-                    Professor.ALEXEY_NIKOLAEV))),
+                    Professor.ALEXEY_NIKOLAEV,
+                    Professor.ALI_ELSAYED,
+                    Professor.STAFF))),
     CSCI_15000("CSCI 150",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.ERIC_SCHWEITZER,
                     Professor.SAADEDDINE_MNEIMNEH,
                     Professor.CULLEN_SCHAFFER,
                     Professor.SEVERIN_NGOSSE,
-                    Professor.ALEXEY_NIKOLAEV))),
+                    Professor.ALEXEY_NIKOLAEV,
+                    Professor.STAFF))),
     CSCI_16000("CSCI 160",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.JUSTIN_TOJEIRA,
                     Professor.MUSAB_YASIN,
                     Professor.EDMOND_LLESHI,
-                    Professor.CHRISTINA_ZAMFIRESCU))),
+                    Professor.CHRISTINA_ZAMFIRESCU,
+                    Professor.STAFF))),
     CSCI_23500("CSCI 235",
             new ArrayList<Professor>(Arrays.asList(
                     Professor.JULIO_KUPLINSKY,
                     Professor.SEVERIN_NGOSSE,
-                    Professor.SIMON_AYZMAN)));
+                    Professor.SIMON_AYZMAN,
+                    Professor.STAFF)));
 
     private String name;
     private ArrayList<Professor> professors;
