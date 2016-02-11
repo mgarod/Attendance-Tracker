@@ -11,6 +11,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+import java.io.InterruptedIOException;
+
 public class Main extends Application {
 
     private Scene scene;
@@ -26,7 +28,12 @@ public class Main extends Application {
         primaryStage.setTitle("Hunter CS Tutoring Center");
         primaryStage.setMinWidth(600);
         primaryStage.setMinHeight(400);
-
+        /*
+        primaryStage.setOnCloseRequest(event -> {
+            PopUp.display("Error","Please do not close this window");
+            event.consume();
+        });
+        */
         signInBox = new SignInBox();
         signInBox.setPadding(new Insets(50));
         signInBox.setStyle("-fx-border-style: hidden solid hidden hidden");
@@ -106,7 +113,8 @@ public class Main extends Application {
     }
 
     private void handleSignOut(Student student) {
-        new SignOutReviewWindow(student);
-        signOutBox.signOutStudent(student);
+        SignOutReviewWindow window = new SignOutReviewWindow(student);
+        if(window.successfulSignOut == true)
+            signOutBox.signOutStudent(student);
     }
 }
