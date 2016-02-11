@@ -13,9 +13,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
-import java.io.InterruptedIOException;
 import java.util.ArrayList;
 
 public class SignOutReviewWindow extends Stage {
@@ -146,7 +144,7 @@ public class SignOutReviewWindow extends Stage {
         sod = new SignOutData(student.getEmplId(), arrayOfTopics, levelOfLearningValue, theTutor.getValue());
 
         Main.getMdb().signOut(sod);
-        success = true;
+        successfulSignOut = true;
         close();
     }
 
