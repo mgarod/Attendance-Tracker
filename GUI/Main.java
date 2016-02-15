@@ -17,7 +17,7 @@ public class Main extends Application {
 
     private Scene scene;
     private HBox horizontalLayout;
-    private SignInBox signInBox;
+    private static SignInBox signInBox;
     private SignOutBox signOutBox;
     private static MdbInterface mdb;
     Student student;
@@ -116,5 +116,9 @@ public class Main extends Application {
         SignOutReviewWindow window = new SignOutReviewWindow(student);
         if(window.successfulSignOut == true)
             signOutBox.signOutStudent(student);
+    }
+
+    public static SignInBox getSignInBox() {
+        return signInBox;
     }
 }

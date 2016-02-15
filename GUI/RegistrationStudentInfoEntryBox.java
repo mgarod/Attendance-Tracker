@@ -36,6 +36,9 @@ public class RegistrationStudentInfoEntryBox extends VBox {
         classyearLabel = makeNewLabel("Class Year");
 
         emplIdTextField = new TextField();
+        emplIdTextField.setText(Main.getSignInBox().getTextField().getText());
+        emplIdTextField.setDisable(true);
+
         firstNameTextField = new TextField();
         lastNameTextField = new TextField();
         yearChoiceBox = new ChoiceBox<>();

@@ -29,5 +29,4 @@ public class PopUp {
         mainStage.setScene(scene);
         mainStage.show();
     }
-
 }
