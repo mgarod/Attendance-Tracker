@@ -1,6 +1,7 @@
 package GUI;
 
 import Information.Student;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -66,5 +67,14 @@ public class SignOutBox extends VBox {
 
     public void signOutStudent(Student student) {
         listView.getItems().remove(student);
+    }
+
+    public boolean containsActiveStudentByEmplId(int emplId) {
+        ObservableList<Student> list = listView.getItems();
+        for (Student s : list)
+            if (s.getEmplId() == emplId)
+                return true;
+
+        return false;
     }
 }

@@ -94,7 +94,10 @@ public class Main extends Application {
             throw new IllegalArgumentException("EMPL ID must be exactly 8 digits long");
         }
 
-        if (mdb.studentExists(emplId)) {
+        if (isDuplicateSignIn(emplId)){
+            PopUp.display("Student Already Signed In", "Cannot sign in the same student twice.");
+        }
+        else if (mdb.studentExists(emplId)) {
             student = mdb.getStudentByEmplId(emplId);
             signOutBox.addActiveStudent(mdb.getStudentByEmplId(emplId));
             mdb.signIn(emplId);
@@ -114,8 +117,12 @@ public class Main extends Application {
 
     private void handleSignOut(Student student) {
         SignOutReviewWindow window = new SignOutReviewWindow(student);
-        if(window.successfulSignOut == true)
+        if(window.successfulSignOut)
             signOutBox.signOutStudent(student);
+    }
+
+    private boolean isDuplicateSignIn(int emplId){
+        return signOutBox.containsActiveStudentByEmplId(emplId);
     }
 
     public static SignInBox getSignInBox() {
