@@ -15,6 +15,7 @@ import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 
 import java.util.ArrayList;
+import java.lang.Exception;
 
 public class RegistrationWindow extends Stage {
 
@@ -55,11 +56,21 @@ public class RegistrationWindow extends Stage {
     private void registerNewStudent() {
         try {
             student = ((RegistrationStudentInfoEntryBox) studentInfo).getStudent();
+
+            if(student.getFirstName().length() == 0 || student.getLastName().length() == 0){
+                System.out.println("Empty names");
+                throw new IllegalArgumentException();
+            }
+
             ArrayList<CompSciClass> classes = ((RegistrationClassEntryBox) classEntry).getEnrolledCourses();
             student.setCurrentClasses(classes);
             Main.getMdb().registerStudent(student);
             close();
-        } catch (Exception e) {
+        } catch (IllegalArgumentException e) {
+            e.printStackTrace();
+            PopUp.display("Error", "Neither first nor last name field may be empty");
+        }
+        catch (Exception e) {
             e.printStackTrace();
             PopUp.display("Error", "Something went wrong, try again");
         }
