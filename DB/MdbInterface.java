@@ -23,10 +23,12 @@ public class MdbInterface {
     private MongoCollection<Document> Attendance;
     private HashMap<Integer, String> ActiveStudents;
 
+	final String semester = "FALL2016";
+
     public MdbInterface() {
         mongoClient = new MongoClient("localhost", 27017);
         database = mongoClient.getDatabase("local");
-        Attendance = database.getCollection("SPRING2016");
+        Attendance = database.getCollection(semester);
         ActiveStudents = new HashMap<>();
     }
 

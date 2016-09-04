@@ -71,7 +71,7 @@ public class Main extends Application {
     // Precondition: emplId is a valid integer which has already been parsed
     // Throws IllegalArgumentException if emplId is not 8 digits
     private boolean validateEmpl(int emplId){
-        if(emplId < 9999999 || emplId > 99999999){
+        if(emplId < 10000000 || emplId > 99999999){
             throw new IllegalArgumentException("EMPL ID must be exactly 8 digits long");
         }
         return true;

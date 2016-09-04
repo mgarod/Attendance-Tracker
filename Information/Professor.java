@@ -31,6 +31,18 @@ public enum Professor {
     IRIS_HERSHENSON("Iris Hershenson"),
     SYADU_OOSEPFRIS("Syadu Oosepfris"),
     ALI_ELSAYED("Ali Elsayed"),
+    KONSTANTINOS_POULIASIS("Konstantinos Pouliasis"),
+    PIOTR_KAPELA("Piotr Kapela"),
+    ANOOP_AROOR("Anoop Aroor"),
+    MICHAEL_ZAMANSKY("Michael Zamansky"),
+    ADRIANA_WISE("Adriana Wise"),
+    SYED_ALIAHMED("Syed Ali Ahmed"),
+    JIA_XU("Jia Xu"),
+    SAPTARSHI_DEBROY("Saptarshi Debroy"),
+    GILBERT_PAJELA("Gilbert Pajela"),
+    MARTIN_VASAS("Martin Vasas"),
+    ZHAOHENG_NI("Zhaoheng Ni"),
+    STEWART_WEISS("Stewart Weiss"),
     STAFF("STAFF");
 
     private String name;
