@@ -43,6 +43,9 @@ public enum Professor {
     MARTIN_VASAS("Martin Vasas"),
     ZHAOHENG_NI("Zhaoheng Ni"),
     STEWART_WEISS("Stewart Weiss"),
+    MINH_NGUYEN("Minh Nguyen"),
+    SILVANO_BERNABEL("Silvano Bernabel"),
+    PRIYANKA_SAMANTA("Priyanka Samanta"),
     STAFF("STAFF");
 
     private String name;

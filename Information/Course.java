@@ -48,6 +48,8 @@ public enum Course {
                     Professor.ALI_ELSAYED,
                     Professor.ALEXEY_NIKOLAEV,
                     Professor.GILBERT_PAJELA,
+                    Professor.MINH_NGUYEN,
+                    Professor.PRIYANKA_SAMANTA,
                     Professor.STAFF))),
     CSCI_15000("CSCI 150",
             new ArrayList<Professor>(Arrays.asList(
@@ -55,6 +57,7 @@ public enum Course {
                     Professor.CULLEN_SCHAFFER,
                     Professor.ERIC_SCHWEITZER,
                     Professor.MARTIN_VASAS,
+                    Professor.SILVANO_BERNABEL,
                     Professor.STAFF))),
     CSCI_16000("CSCI 160",
             new ArrayList<Professor>(Arrays.asList(
@@ -66,6 +69,7 @@ public enum Course {
             new ArrayList<Professor>(Arrays.asList(
                     Professor.SIMON_AYZMAN,
                     Professor.STEWART_WEISS,
+                    Professor.SILVANO_BERNABEL,
                     Professor.STAFF)));
 
     private String name;
