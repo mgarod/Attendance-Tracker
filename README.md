@@ -48,7 +48,7 @@ db.FALL2016.find( {LASTNAME: "Smith"} ).pretty()
 db.FALL2016.find( {FIRSTNAME: "John", LASTNAME: "Smith"} ).pretty()
 ```
 
-[edit record](*Edit-the-time-in-which-a-student-has-logged-out)
+* Edit a student's record
 ```javascript
 db.FALL2016.update(
    { EMPLID: 12345678 },
@@ -64,7 +64,7 @@ db.FALL2016.update(
 Sometimes the tutor that closes the room in the evening forgets to to log students out. The morning tutor should record the names of the students in the list, then simply close the application to wipe the list clean and rerun the program. If a student is not logged out, then their TIMEOUT stamp will simply be 'n/a'. In this scenario, no data is better than the incorrect data of logging them out with the timestamp of the following morning.
 
 If the morning tutor can approximate the time that the students left (the time that the center closed on the previous day), then the morning tutor should then lookup the students in the database to find the timestamp of each student that has 'n/a' as their time out. The record would look like the following:
-```
+```javascript
 {
   "_id" : ObjectId("0120934baf30422gf234a"),
   "EMPLID" : 12345678,
@@ -80,4 +80,4 @@ If the morning tutor can approximate the time that the students left (the time t
 }
 ```
 
-With the timestamp "10/20/2016 13:45:31", [construct the query](edit record), modifying the time in and time out stamps.
+With the timestamp "10/20/2016 13:45:31", construct the query entitled "Edit a student's record" above, modifying the time in stamp, and writing an appropriate time out stamp.
