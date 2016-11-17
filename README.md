@@ -6,10 +6,6 @@ Igor Goldvekht
 ## Run With
 java -jar AttendanceTracker.jar
 
-## Warning
-It is the responsibility of the tutor to sign out every student when they leave.
-Input validation is minimal. Ensure that all information is input perfectly.
-
 ## Tutoring Center Terminal
 All commands have been set up as aliases in the terminal. To see these commands view the .bash_profile, enter the alias 'bashp' anywhere in the terminal to view the file in VIM. From anywhere within the terminal, and command may be executed.
 
@@ -61,7 +57,9 @@ db.FALL2016.update(
 ```
 
 ## Warning
-Sometimes the tutor that closes the room in the evening forgets to to log students out. The morning tutor should record the names of the students in the list, then simply close the application to wipe the list clean and rerun the program. If a student is not logged out, then their TIMEOUT stamp will simply be 'n/a'. In this scenario, no data is better than the incorrect data of logging them out with the timestamp of the following morning.
+It is the responsibility of the tutor to sign out every student when they leave. Input validation is minimal. Ensure that all information is input perfectly.
+
+Sometimes the tutor that closes the room in the evening forgets to log students out. The morning tutor should record the names of the students in the list, then simply close the application to wipe the list clean and rerun the program. If a student is not logged out, then their TIMEOUT stamp will simply be 'n/a'. In this scenario, no data is better than the incorrect data of logging them out with the timestamp of the following morning.
 
 If the morning tutor can approximate the time that the students left (the time that the center closed on the previous day), then the morning tutor should then lookup the students in the database to find the timestamp of each student that has 'n/a' as their time out. The record would look like the following:
 ```javascript
