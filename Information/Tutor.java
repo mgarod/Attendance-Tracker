@@ -1,9 +1,9 @@
 package Information;
 
 public enum Tutor {
-    KARAN_BOODWA("Karan Boodwa"),
+    GWENAEL_GATTO("Gwenael Gatto"),
     GIL_DEKEL("Gil Dekel"),
-    MICHAEL_GAROD("Michael Garod"),
+    ALLAN_SPEKTOR("Allan Spektor"),
     MEREDITH_LANCASTER("Meredith Lancaster"),
     WEI_SHI("Wei Shi");
 

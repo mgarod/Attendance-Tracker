@@ -23,7 +23,7 @@ public class MdbInterface {
     private MongoCollection<Document> Attendance;
     private HashMap<Integer, String> ActiveStudents;
 
-	final String semester = "FALL2016";
+	final String semester = "SPRING2017";
 
     public MdbInterface() {
         mongoClient = new MongoClient("localhost", 27017);
