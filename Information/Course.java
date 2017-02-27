@@ -56,7 +56,7 @@ public enum Course {
                     Professor.BENJAMIN_GARRETT,
                     Professor.SILVANO_BERNABEL,
                     Professor.CULLEN_SCHAFFER,
-                    Professor.ERIC_SCHWEITZER,
+                    Professor.ALEXEY_NIKOLAEV,
                     Professor.STAFF))),
     CSCI_16000("CSCI 160",
             new ArrayList<Professor>(Arrays.asList(
